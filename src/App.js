@@ -66,12 +66,12 @@ function App() {
 	return (
 		<main className="app flex bg-gradient-to-b from-[--bg-top] to-[--bg-bottom] text-[--text-2]">
 			<SideBarLeft />
-			<PlayList
-				songOrderConfig={songOrderConfig}
-				orders={orders}
-				setOrders={setOrders}
-			/>
 			<PlayerProvider>
+				<PlayList
+					songOrderConfig={songOrderConfig}
+					orders={orders}
+					setOrders={setOrders}
+				/>
 				<SideBarRight
 					songOrderConfig={songOrderConfig}
 					orders={orders}

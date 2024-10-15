@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import playerContext from "./playerContext";
 
 function PlayerProvider({ children }) {
-	const [songIndex, setSongIndex] = useState(-1);
+	const [song, setSong] = useState(null);
 	return (
-		<playerContext.Provider value={{ songIndex, setSongIndex }}>
+		<playerContext.Provider value={{ song, setSong }}>
 			{children}
 		</playerContext.Provider>
 	);

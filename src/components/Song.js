@@ -1,15 +1,19 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
+import playerContext from "../playerContext/playerContext";
 
-function Song({
-	song,
-	index,
-	activeId,
-	setActiveId,
-	overId,
-	setOverId,
-	orders,
-	onDrop,
-}) {
+function Song(props) {
+	const { song: selectedSong, setSong } = useContext(playerContext);
+	const {
+		song,
+		index,
+		activeId,
+		setActiveId,
+		overId,
+		setOverId,
+		orders,
+		onDrop,
+	} = props;
+
 	const handleDragStart = (e) => {
 		setActiveId(song.id);
 	};
@@ -39,9 +43,21 @@ function Song({
 		[activeId, orders]
 	);
 
+	const handleClick = () => {
+		if (!selectedSong || song.id != selectedSong.id) {
+			setSong(song);
+		} else {
+			setSong(null);
+		}
+	};
+
 	return (
 		<div
-			className="px-[5.5rem] border-x-[transparent] border-x-[.5rem] hover:border-s-[--song-hover-border] relative hover:bg-[--song-hover-bg]"
+			className={`px-[5.5rem] border-x-[transparent] border-x-[.5rem] relative hover:border-s-[--song-hover-border] hover:bg-[--song-hover-bg] ${
+				song.id === selectedSong?.id &&
+				"border-s-[--song-hover-border] bg-[--song-hover-bg]"
+			}`}
+			onClick={handleClick}
 			draggable
 			onDragStart={handleDragStart}
 			onDragEnd={handleDragEnd}
@@ -49,19 +65,19 @@ function Song({
 			onDragLeave={handleDragLeave}
 			onDrop={handleDrop}
 		>
-			<div className="grid grid-cols-[1fr,1fr,5fr,3fr,2fr,4fr] items-center">
-				<div className="py-1 px-2">{index + 1}</div>
-				<div className="py-1 px-2">
+			<div className="grid grid-cols-[1fr,2fr,12fr,6fr,4fr,6fr] items-center">
+				<div className="py-1 px-1">{index + 1}</div>
+				<div className="py-1 px-1">
 					<img src={song.thumbnail} alt="cover" />
 				</div>
-				<div className="py-1 px-2 truncate">{song.title}</div>
-				<div className="py-1 px-2 truncate">{song.playing}</div>
-				<div className="py-1 px-2">{song.time}</div>
-				<div className="py-1 px-2 text-end truncate">{song.album}</div>
+				<div className="py-1 px-1 truncate">{song.title}</div>
+				<div className="py-1 px-1 truncate">{song.playing}</div>
+				<div className="py-1 px-1">{song.time}</div>
+				<div className="py-1 px-1 text-end truncate">{song.album}</div>
 			</div>
 			{overId === song.id && (
 				<div
-					className={`absolute w-full left-0 border-t-2 border-dashed border-[--text-2] ${
+					className={`absolute w-[calc(100%+1rem)] -left-[.5rem] border-t-2 border-dashed border-[--text-2] ${
 						activeIndex > index ? "top-0" : "bottom-0"
 					}`}
 				/>

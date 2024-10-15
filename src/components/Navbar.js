@@ -2,7 +2,7 @@ import search from "../assets/search.png";
 
 const Navbar = () => {
 	return (
-		<nav className="flex flex-col-reverse sm:flex-row gap-4 items-center justify-between px-[6.5rem] py-4 sticky top-0">
+		<nav className="flex flex-col-reverse sm:flex-row gap-4 items-center justify-between px-[6.25rem] py-4 sticky top-0">
 			<ul className="flex gap-4 w-full justify-center sm:justify-start">
 				<li>Music</li>
 				<li>Podcast</li>

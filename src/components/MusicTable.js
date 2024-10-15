@@ -18,14 +18,14 @@ function MusicTable({ songOrderConfig, orders, setOrders }) {
 	}, [activeId, overId, orders]);
 
 	return (
-		<div className="mb-4">
-			<div className="grid grid-cols-[1fr,1fr,6fr,3fr,2fr,3fr] px-[6rem] text-[--text-1]">
-				<div className="py-2 px-2">#</div>
-				<div className="py-2 px-2"></div>
-				<div className="py-2 px-2">TITLE</div>
-				<div className="py-2 px-2">PLAYING</div>
-				<div className="py-2 px-2">TIME</div>
-				<div className="py-2 px-2 text-end">ALBUM</div>
+		<div className="mb-4 text-[.8rem]">
+			<div className="grid grid-cols-[1fr,2fr,12fr,6fr,4fr,6fr] px-[6rem] text-[--text-1]">
+				<div className="py-2 px-1">#</div>
+				<div className="py-2 px-1"></div>
+				<div className="py-2 px-1">TITLE</div>
+				<div className="py-2 px-1">PLAYING</div>
+				<div className="py-2 px-1">TIME</div>
+				<div className="py-2 px-1 text-end">ALBUM</div>
 			</div>
 			{orders.map((order, index) => {
 				const song = songOrderConfig[order];
